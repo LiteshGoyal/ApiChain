@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# API Chaining Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a responsive web application built to demonstrate the ability to handle complex API interactions, including both GET and POST requests. The dashboard allows chaining multiple API calls, where the response from one API is used as a parameter or in the request body of subsequent API requests.
 
-## Available Scripts
+Demo Link
+Demo Video
+## Table of Contents
+- Setup Instructions
+- Approach
+- Assumptions and Decisions
+- Features
+- Known Issues
+- Setup Instructions
+1. Clone the Repository
+bash
+Copy code
+git clone <repository-url>
+cd <repository-folder>
+2. Install Dependencies
+bash
+Copy code
+npm install
+3. Start the Development Server
+bash
+Copy code
+npm start
+The application will start on http://localhost:3000.
 
-In the project directory, you can run:
+4. Build for Production
+To create a production build, run:
 
-### `npm start`
+bash
+Copy code
+npm run build
+5. Tailwind CSS Setup
+Tailwind CSS has already been configured and is included in the tailwind.config.js file. Ensure you have run npm install to install all necessary dependencies for Tailwind.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+6. Running the Project
+You can run the project locally on your machine using the following command:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+bash
+Copy code
+npm start
+Approach
+This project demonstrates API chaining using React.js for the frontend, with Tailwind CSS for styling. It integrates with three mock REST APIs:
 
-### `npm test`
+Get Users List - GET /users
+Create New Post - POST /posts
+Get Comments by Post - GET /comments?postId={postId}
+The API chaining works by:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Allowing the user to select a user, create a post, and fetch comments related to that post.
+The created post is either new or fetched from the existing posts using its title, ensuring that no duplicate posts are created.
+Key Components:
+APIChainBuilder.js: Core component that handles API chaining logic.
+State Management: Controlled using React hooks such as useState and useEffect.
+UI/UX Enhancements: Tailwind CSS is used for styling the interface, ensuring responsiveness and a clean layout.
+Loading States and Error Handling
+Loading indicators are shown while API requests are in progress.
+Appropriate error messages are displayed if any API fails.
+Icon Integration
+Icons from lucide-react are used to enhance the interface and give visual cues to the user.
+Assumptions and Decisions
+Data Transformation: In this project, it is assumed that the post ID from the created post is required to fetch comments, making it essential for the post to be created before comments can be fetched.
+Mock APIs: The JSONPlaceholder APIs were used as mock endpoints, assuming the structure of responses and requests would resemble real-world APIs.
+POST Title Uniqueness: To prevent duplication of posts, it was assumed that post titles should be unique. If a post with the same title exists, the application uses that existing post instead of creating a new one.
+Minimal Styling: Tailwind CSS was used for minimal styling while ensuring the layout remains responsive and visually appealing.
+Features
+Responsive UI: The layout adapts well to different screen sizes.
+User Selection: Allows users to select a user for whom to create a post.
+API Chaining: The response from one API (post ID) is used as input for the next API call (fetching comments).
+Data Visualization: Displays the flow of data between the chained APIs and renders user posts and their related comments.
+Loading States: Implemented for a better user experience during API calls.
+Error Handling: Displays error messages in case of failures in API requests.
+Post Creation: Prevents duplicate posts by checking existing posts before creating new ones.
+Known Issues
+Mock API Limitations: JSONPlaceholder APIs do not persist created posts, meaning new posts created in the session do not exist beyond the request. As a result, comments fetched will only work for static posts (like post ID 1).
+Limited Validation: Form validation could be enhanced to improve user input handling, such as checking for empty fields more thoroughly.
+Post Duplication: If post titles are reused, the app fetches the existing post, but this approach might not be ideal for real-world applications where title uniqueness is not enforced.
+Conclusion
+This project successfully demonstrates the ability to chain multiple API calls together, handle GET/POST requests, and manage state effectively in a React.js application. It uses Tailwind CSS for responsive, modern design and includes basic error handling for a smoother user experience.

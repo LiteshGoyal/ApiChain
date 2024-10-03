@@ -13,19 +13,16 @@ Demo Video
 - Setup Instructions
 
 ## 1. Clone the Repository
-Copy code
 ```
 git clone <repository-url>
 cd <repository-folder>
 ```
 ## 2. Install Dependencies
-Copy code
 ```
 npm install
 ```
 ## 3. Start the Development Server
 
-Copy code
 ```
 npm start
 ```
@@ -35,7 +32,6 @@ The application will start on http://localhost:3000.
 To create a production build, run:
 
 
-Copy code
 ```
 npm run build
 ```
@@ -46,7 +42,6 @@ Tailwind CSS has already been configured and is included in the tailwind.config.
 You can run the project locally on your machine using the following command:
 
 
-Copy code
 ```
 npm start
 ```

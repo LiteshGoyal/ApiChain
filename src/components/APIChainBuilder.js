@@ -23,27 +23,21 @@ const APIChainBuilder = () => {
             }
             setLoading(false);
         };
-
         const fetchPosts = async () => {
             const response = await fetch('https://jsonplaceholder.typicode.com/posts');
             const postsData = await response.json();
             setPosts(postsData);
         };
-
         fetchUsers();
         fetchPosts();
     }, []);
-
     const handlePostSubmit = async () => {
         if (!postTitle || !postBody) {
             alert('Please enter both title and body.');
             return;
         }
-
         setLoading(true);
-
         const existingPost = posts.find(post => post.title === postTitle);
-
         if (existingPost) {
             console.log('Post already exists:', existingPost);
             setCreatedPost(existingPost);
@@ -56,13 +50,11 @@ const APIChainBuilder = () => {
                 },
                 body: JSON.stringify({ title: postTitle, body: postBody, userId: selectedUser }),
             });
-
             const postData = await postResponse.json();
             console.log('Created Post Data:', postData);
             setCreatedPost(postData);
             fetchComments(postData.id);
         }
-
         setLoading(false);
     };
 
@@ -74,7 +66,7 @@ const APIChainBuilder = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-100 flex flex-col items-center p-8 font-sans">
+        <div className="bg-gray-100 flex flex-col items-center p-8">
             <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl">
                 <h2 className="text-2xl font-semibold mb-4">Build API Chain</h2>
                 <label className="block mb-2 text-gray-700 flex items-center">

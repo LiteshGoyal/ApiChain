@@ -1,9 +1,8 @@
 # API Chaining Dashboard
 
-This is a responsive web application built to demonstrate the ability to handle complex API interactions, including both GET and POST requests. The dashboard allows chaining multiple API calls, where the response from one API is used as a parameter or in the request body of subsequent API requests.
+This is a responsive web application built to demonstrate the ability to handle complex API interactions, including both GET and POST requests. The dashboard allows chaining multiple API calls, where the response from one API is used as a parameter  of subsequent API requests.
 
-Demo Link
-Demo Video
+Demo Video[https://drive.google.com/file/d/1OVtf64IJE3xFNrGXyQ0JSB84zP2YzwoV/view?usp=sharing]
 ## Table of Contents
 - Setup Instructions
 - Approach
@@ -22,7 +21,6 @@ cd <repository-folder>
 npm install
 ```
 ## 3. Start the Development Server
-
 ```
 npm start
 ```
@@ -30,32 +28,30 @@ The application will start on http://localhost:3000.
 
 ## 4. Build for Production
 To create a production build, run:
-
-
 ```
 npm run build
 ```
+
 ## 5. Tailwind CSS Setup
 Tailwind CSS has already been configured and is included in the tailwind.config.js file. Ensure you have run npm install to install all necessary dependencies for Tailwind.
 
 ## 6. Running the Project
 You can run the project locally on your machine using the following command:
-
-
 ```
 npm start
 ```
 
 # Approach
-This project demonstrates API chaining using React.js for the frontend, with Tailwind CSS for styling. It integrates with three mock REST APIs:
+This project demonstrates API chaining using React.js for the frontend, with Tailwind CSS for styling. It integrates with three REST APIs:
 
 - Get Users List - GET /users
 - Create New Post - POST /posts
 - Get Comments by Post - GET /comments?postId={postId}
-- The API chaining works by:
+
+### The API chaining works by:
 
 Allowing the user to select a user, create a post, and fetch comments related to that post.
-The created post is either new or fetched from the existing posts using its title, ensuring that no duplicate posts are created.
+The created post is either new or fetched from the existing posts using its title and body, ensuring that no duplicate posts are created.
 
 ## Key Components:
 - APIChainBuilder.js: Core component that handles API chaining logic.
@@ -65,8 +61,6 @@ The created post is either new or fetched from the existing posts using its titl
 - Loading indicators are shown while API requests are in progress.
 - Appropriate error messages are displayed if any API fails.
 - Icon Integration
-- Icons from lucide-react are used to enhance the interface and give visual cues to the user.
-- Assumptions and Decisions
 - Data Transformation: In this project, it is assumed that the post ID from the created post is required to fetch comments, making it essential for the post to be created before comments can be fetched.
 - Mock APIs: The JSONPlaceholder APIs were used as mock endpoints, assuming the structure of responses and requests would resemble real-world APIs.
 - POST Title Uniqueness: To prevent duplication of posts, it was assumed that post titles should be unique. If a post with the same title exists, the application uses that existing post instead of creating a new one.
@@ -80,11 +74,6 @@ The created post is either new or fetched from the existing posts using its titl
 - Loading States: Implemented for a better user experience during API calls.
 - Error Handling: Displays error messages in case of failures in API requests.
 - Post Creation: Prevents duplicate posts by checking existing posts before creating new ones.
-
-# Known Issues
-- Mock API Limitations: JSONPlaceholder APIs do not persist created posts, meaning new posts created in the session do not exist beyond the request. As a result, comments fetched will only work for static posts (like post ID 1).
-- Limited Validation: Form validation could be enhanced to improve user input handling, such as checking for empty fields more thoroughly.
-- Post Duplication: If post titles are reused, the app fetches the existing post, but this approach might not be ideal for real-world applications where title uniqueness is not enforced.
 
 # Conclusion
 This project successfully demonstrates the ability to chain multiple API calls together, handle GET/POST requests, and manage state effectively in a React.js application. It uses Tailwind CSS for responsive, modern design and includes basic error handling for a smoother user experience.
